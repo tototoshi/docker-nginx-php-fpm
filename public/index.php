@@ -1,15 +1,18 @@
 <?php
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
+
+use App\Controller\HomeController;
+use DI\Container;
 use Slim\Factory\AppFactory;
+use Slim\Views\Twig;
 
 require __DIR__ . '/../vendor/autoload.php';
 
+$container = new Container();
+$container->set(Twig::class, Twig::create(__DIR__ . '/../templates', ['cache' => false]));
+AppFactory::setContainer($container);
+
 $app = AppFactory::create();
 
-$app->get('/', function (Request $request, Response $response, $args) {
-    $response->getBody()->write("Hello world!");
-    return $response;
-});
+$app->get('/', HomeController::class);
 
 $app->run();
