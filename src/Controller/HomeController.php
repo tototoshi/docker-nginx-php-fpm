@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use Psr\Container\ContainerInterface;
+use App\DB\ConnectionFactory;
+use App\DB\MySQLInformationDao;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
@@ -10,18 +11,21 @@ use Slim\Views\Twig;
 class HomeController
 {
 
-    private Twig $twig;
-
-    public function __construct(private ContainerInterface $container)
-    {
-        $this->twig = $this->container->get(Twig::class);
+    public function __construct(
+        private ConnectionFactory $connectionFactory,
+        private Twig $twig,
+        private MySQLInformationDao $mySQLInformationDao,
+    ) {
     }
 
     public function __invoke(ServerRequestInterface $request,
                              ResponseInterface      $response,
                              array                  $args): ResponseInterface
     {
-        $data = ['name' => 'World'];
+        $data = [
+            'name' => 'World',
+            'mysql_version' => $this->mySQLInformationDao->getMysqlVersion($this->connectionFactory->getConnection()),
+        ];
         return $this->twig->render($response, 'home.twig', $data);
     }
 
