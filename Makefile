@@ -1,7 +1,7 @@
 .PHONY: start shutdown restart reload
 
 start:
-	docker-compose up -d
+	docker-compose up -d --build
 
 shutdown:
 	docker-compose down

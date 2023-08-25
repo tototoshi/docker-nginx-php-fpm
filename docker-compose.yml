@@ -12,8 +12,20 @@ services:
       - "8080:80"
   php-fpm:
     container_name: php-fpm
-    image: php:8.0-fpm-bullseye
+    build:
+      context: .
+      dockerfile: Dockerfile.php-fpm
     volumes:
       - .:/app
     ports:
       - "9000:9000"
+  mysql:
+    container_name: mysql
+    image: mysql
+    environment:
+      MYSQL_DATABASE: example
+      MYSQL_USER: my_user
+      MYSQL_PASSWORD: my_password
+      MYSQL_ROOT_PASSWORD: my_root_password
+    ports:
+      - "3306:3306"
