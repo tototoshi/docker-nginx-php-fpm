@@ -16,9 +16,9 @@ class AppConfig {
     public function getConnectionFactory(): ConnectionFactory
     {
         return new ConnectionFactory(
-            'mysql:host=mysql;dbname=example',
-            'my_user',
-            'my_password',
+            $_ENV['DB_DSN'],
+            $_ENV['DB_USERNAME'],
+            $_ENV['DB_PASSWORD'],
         );
     }
 
