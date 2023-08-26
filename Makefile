@@ -1,4 +1,4 @@
-.PHONY: start shutdown restart reload phpcs
+.PHONY: start shutdown restart reload phpcs phpstan
 
 start:
 	docker-compose up -d --build
@@ -17,3 +17,10 @@ tools/php-cs-fixer/vendor/bin/php-cs-fixer:
 
 phpcs: tools/php-cs-fixer/vendor/bin/php-cs-fixer
 	./tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src
+
+tools/phpstan/vendor/bin/phpstan:
+	mkdir -p tools/phpstan
+	composer require --dev --working-dir=tools/phpstan phpstan/phpstan
+
+phpstan: tools/phpstan/vendor/bin/phpstan
+	./tools/phpstan/vendor/bin/phpstan analyse src
