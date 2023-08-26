@@ -10,7 +10,6 @@ use Slim\Views\Twig;
 
 class HomeController
 {
-
     public function __construct(
         private ConnectionFactory $connectionFactory,
         private Twig $twig,
@@ -18,10 +17,11 @@ class HomeController
     ) {
     }
 
-    public function __invoke(ServerRequestInterface $request,
-                             ResponseInterface      $response,
-                             array                  $args): ResponseInterface
-    {
+    public function __invoke(
+        ServerRequestInterface $request,
+        ResponseInterface      $response,
+        array                  $args
+    ): ResponseInterface {
         $data = [
             'name' => 'World',
             'mysql_version' => $this->mySQLInformationDao->getMysqlVersion($this->connectionFactory->getConnection()),
