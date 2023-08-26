@@ -1,22 +1,17 @@
 <?php
+declare(strict_types=1);
 
+use App\Config\AppConfig;
 use App\Controller\HomeController;
-use App\DB\ConnectionFactory;
 use App\DB\MySQLInformationDao;
 use Slim\Factory\AppFactory;
-use Slim\Views\Twig;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$twig = Twig::create(__DIR__ . '/../templates', ['cache' => false]);
-$connectionFactory = new ConnectionFactory(
-    'mysql:host=mysql;dbname=example',
-    'my_user',
-    'my_password',
-);
+$config = new AppConfig();
 
 $app = AppFactory::create();
 
-$app->get('/', new HomeController($connectionFactory, $twig, new MySQLInformationDao()));
+$app->get('/', new HomeController($config->getConnectionFactory(), $config->getTwig(), new MySQLInformationDao()));
 
 $app->run();
