@@ -27,4 +27,4 @@ tools/phpstan/vendor/bin/phpstan:
 	composer require --dev --working-dir=tools/phpstan phpstan/phpstan
 
 phpstan: tools/phpstan/vendor/bin/phpstan
-	./tools/phpstan/vendor/bin/phpstan analyse src
+	./tools/phpstan/vendor/bin/phpstan analyse --level 9 src
