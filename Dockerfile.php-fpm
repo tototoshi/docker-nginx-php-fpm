@@ -4,10 +4,12 @@ ENV LANG ja_JP.UTF-8
 ENV LANGUAGE ja_JP:ja
 ENV LC_ALL=ja_JP.UTF-8
 RUN apt-get update
-RUN apt-get install -y locales-all
+RUN apt-get install -y locales-all gettext libicu-dev
 
 # Setup PHP environment
 RUN apt-get update
+RUN docker-php-ext-install gettext
+RUN docker-php-ext-install intl
 RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install pcntl
 

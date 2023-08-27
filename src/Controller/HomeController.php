@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\DB\ConnectionFactory;
 use App\DB\MySQLInformationDao;
+use Locale;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
