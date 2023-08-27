@@ -13,6 +13,7 @@ class MySQLInformationDao
         $stmt = $conn->prepare('SELECT version() as v');
         $stmt->execute();
         $row = $stmt->fetch();
+        assert(is_array($row));
         $mysql_version = $row['v'];
         return $mysql_version;
     }
