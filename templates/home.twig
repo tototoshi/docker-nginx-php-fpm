@@ -1,12 +1,8 @@
-<html lang="ja">
-<head>
-    <title>Hello</title>
-    <meta charset="UTF-8">
-</head>
-<body>
+{% extends "base.twig" %}
+
+{% block body %}
 <h1>{{ "Hello"|L }}, {{ name }}</h1>
 <ul>
     <li>MySQL version: {{ mysql_version }}</li>
 </ul>
-</body>
-</html>
+{% endblock %}

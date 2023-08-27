@@ -1,0 +1,33 @@
+{% extends "base.twig" %}
+
+{% block body %}
+    <form action="/login" method="post" class="login-form">
+        {% if form.errors.get('unauthorized') %}
+        <div class="login-form__error">
+            <span>{{ form.errors.get('unauthorized') }}</span>
+        </div>
+        {% endif %}
+        <div class="login-form__field">
+            <label for="user_id">ID:</label>
+            <input id="user_id" type="text" name="user_id" value="{{ form.userId }}" placeholder="admin">
+            {% if form.errors.get('user_id') %}
+            <div class="login-form__error">
+                <span>{{ form.errors.get('user_id') }}</span>
+            </div>
+            {% endif %}
+        </div>
+        <div class="login-form__field">
+            <label for="password">パスワード:</label>
+            <input id="password" type="password" name="password" value="" placeholder="password">
+            {% if form.errors.get('password') %}
+            <div class="login-form__error">
+                <span>{{ form.errors.get('password') }}</span>
+            </div>
+        {% endif %}
+
+        </div>
+        <div>
+            <input type="submit" value="ログイン" class="general-button-primary">
+        </div>
+    </form>
+{% endblock %}
