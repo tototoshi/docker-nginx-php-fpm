@@ -1,4 +1,4 @@
-.PHONY: start shutdown locale restart reload phpcs phpstan
+.PHONY: start shutdown test locale restart reload phpcs phpstan
 
 start:
 	docker-compose up -d --build
@@ -10,6 +10,9 @@ restart: shutdown start
 
 reload:
 	docker exec nginx bash -c 'service nginx reload'
+
+test:
+	./vendor/bin/phpunit test
 
 locale:
 	docker exec -w /app php-fpm bash -c 'msgfmt locale/ja_JP/LC_MESSAGES/messages.po -o locale/ja_JP/LC_MESSAGES/messages.mo'
