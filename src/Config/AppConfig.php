@@ -10,7 +10,6 @@ use Twig\TwigFilter;
 
 class AppConfig
 {
-
     public function getRootDirectory(): string
     {
         return __DIR__ . '/../../';
