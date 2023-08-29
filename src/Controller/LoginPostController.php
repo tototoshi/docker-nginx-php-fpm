@@ -4,15 +4,10 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\DB\ConnectionFactory;
 use App\Form\LoginForm;
-use InvalidArgumentException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
-use Twig\Error\LoaderError;
-use Twig\Error\SyntaxError;
-use Twig\Error\RuntimeError;
 
 class LoginPostController
 {
