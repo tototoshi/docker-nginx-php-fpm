@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace App\Config;
 
 use App\DB\ConnectionFactory;
-use Slim\Views\Twig;
-use Twig\TwigFilter;
 
 class AppConfig
 {
@@ -23,15 +21,6 @@ class AppConfig
     public function getTemplatesDirectory(): string
     {
         return $this->getRootDirectory() . 'templates/';
-    }
-
-    public function getTwig(): Twig
-    {
-        $twig = Twig::create($this->getTemplatesDirectory(), ['cache' => false]);
-        $twig->getEnvironment()->addFilter(new TwigFilter('L', function ($string) {
-            return gettext($string);
-        }));
-        return $twig;
     }
 
     public function getConnectionFactory(): ConnectionFactory

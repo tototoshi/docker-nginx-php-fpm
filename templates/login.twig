@@ -2,6 +2,7 @@
 
 {% block body %}
     <form action="/login" method="post" class="login-form">
+        {% include "csrf.twig" %}
         {% if form.errors.get('unauthorized') %}
         <div class="login-form__error">
             <span>{{ form.errors.get('unauthorized') }}</span>

@@ -13,7 +13,9 @@ class AuthMiddleware
 {
     public function __invoke(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        session_start();
+        if (session_status() !== PHP_SESSION_ACTIVE) {
+            throw new \RuntimeException('Session not started');
+        }
 
         if ($request->getUri()->getPath() === '/login') {
             return $handler->handle($request);
